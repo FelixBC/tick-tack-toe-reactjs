@@ -1,3 +1,8 @@
+
+// what I need to do, make the mark, the selection on the GameBoard selectedPlayer is move to the other player.
+// So player is what has the problem.
+// Let's go check player
+
 const initialGameBoard = [
     [null, null, null],
     [null, null, null],
