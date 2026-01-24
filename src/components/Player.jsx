@@ -4,7 +4,6 @@ import {useState} from "react";
 export default function Player({initialName, symbol, isActive}) {
     const [isEditing, setIsEditing] = useState(false);
     const [playerName, setPlayerName] = useState(initialName);
-
     console.log(Player.isActive)
     function handleEditable() {
         setIsEditing((editing) => !editing);
