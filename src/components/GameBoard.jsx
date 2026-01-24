@@ -4,8 +4,8 @@
 // Let's go check player
 // Now I am noticing that the player symbol is having an issue its 0,0 but it should not be able to click after the location 0,0
 // has been taken
-
 // whats happening has to do with this. when it gets full, you start to give it back entirely in the log
+
 const initialGameBoard = [
     [null, null, null],
     [null, null, null],
@@ -28,7 +28,7 @@ export default function GameBoard({onSelectSquare, turns}) {
                     <ol>
                         {player.map((playerSymbol, colIndex) => (
                             <li key={colIndex}>
-                                <button onClick={() => onSelectSquare(rowIndex, colIndex)}>{playerSymbol}</button>
+                                <button onClick={() => onSelectSquare(rowIndex, colIndex)} disabled={playerSymbol !== null} >{playerSymbol}</button>
                             </li>
                         ))}
                     </ol>
