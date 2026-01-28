@@ -6,24 +6,12 @@
 // has been taken
 // whats happening has to do with this. when it gets full, you start to give it back entirely in the log
 
-const initialGameBoard = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null],
-]
-export default function GameBoard({onSelectSquare, turns}) {
-    let gameBoard = initialGameBoard;
 
-    for(const turn of turns){
-        const {square, player} = turn; // destruct turn to use it down
-        const {row, col} = square; // destruct square from turn to use it down too.
-
-        gameBoard[row][col] = player;  // this is an array arrays can be accessed by row col like this.
-    }
+export default function GameBoard({onSelectSquare, board}) {
 
     return (
         <ol id="game-board">
-            {gameBoard.map((player, rowIndex) => (
+            {board.map((player, rowIndex) => (
                 <li key={rowIndex}>
                     <ol>
                         {player.map((playerSymbol, colIndex) => (
