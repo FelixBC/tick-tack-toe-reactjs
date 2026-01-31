@@ -1,12 +1,5 @@
 
-// what I need to do, make the mark, the selection on the GameBoard selectedPlayer is move to the other player.
-// So player is what has the problem.
-// Let's go check player
-// Now I am noticing that the player symbol is having an issue its 0,0 but it should not be able to click after the location 0,0
-// has been taken
-// whats happening has to do with this. when it gets full, you start to give it back entirely in the log
-
-
+// just need to always lift the state when there is opportunity to reuse the component
 export default function GameBoard({onSelectSquare, board}) {
 
     return (
