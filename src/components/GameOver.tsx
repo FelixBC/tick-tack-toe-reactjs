@@ -1,4 +1,9 @@
-export default function GameOver({ winner, onRestart }) {
+type gameOverProps = {
+  winner: string;
+  onRestart: () => void;
+};
+
+const GameOver:React.FC<gameOverProps> = ({ winner, onRestart }) => {
   return (
     <div id="game-over">
       <h2>GameOver!</h2>
@@ -9,4 +14,6 @@ export default function GameOver({ winner, onRestart }) {
       </p>
     </div>
   );
-}
+};
+
+export default GameOver;
