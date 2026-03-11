@@ -1,10 +1,15 @@
+import type {Board} from './types';
 
-// just need to always lift the state when there is opportunity to reuse the component
-export default function GameBoard({onSelectSquare, board}) {
+type gameBoardProps = {
+onSelectSquare: () => void;
+board: Board
+}
+
+const GameBoard:React.FC<gameBoardProps> = ({onSelectSquare, board}) => {
 
     return (
         <ol id="game-board">
-            {board.map((player, rowIndex) => (
+            {board.map((board.board., rowIndex) => (
                 <li key={rowIndex}>
                     <ol>
                         {player.map((playerSymbol, colIndex) => (
@@ -20,3 +25,5 @@ export default function GameBoard({onSelectSquare, board}) {
 
 
 }
+
+export default GameBoard;

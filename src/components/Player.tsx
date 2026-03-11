@@ -39,3 +39,4 @@ const Player: React.FC<playerProps> = ({player}) => {
     </li>
   );
 }
+export default Player;

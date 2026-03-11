@@ -1,29 +1,51 @@
-import Player from "./components/Player.jsx";
-import GameBoard from "./components/GameBoard.jsx";
+import Player from "./components/Player.tsx";
+import GameBoard from "./components/GameBoard.tsx";
 import { useState } from "react";
-import Log from "./components/Log.jsx";
-import { WINNING_COMBINATIONS } from "./winning-combinations.js";
-import GameOver from "./components/GameOver.jsx";
+import Log from "./components/Log.tsx";
+import { WINNING_COMBINATIONS } from "./winning-combinations.ts";
+import GameOver from "./components/GameOver.tsx";
+import { Board } from "./components/types.ts";
 
-const PLAYERS = {
+type PlayersNameProps = {
+  X: string;
+  O: string;
+};
+
+const PLAYERS: PlayersNameProps = {
   X: "Player 1",
   O: "Player 2",
 };
 
-const INITIAL_GAME_BOARD = [
+const INITIAL_GAME_BOARD: Board | null[][] = [
   [null, null, null],
   [null, null, null],
   [null, null, null],
 ];
 
-function derivedActivePlayer(gameTurns) {
+type turnProps = {
+  square: squareProps;
+  player: PlayersNameProps;
+};
+
+type squareProps = {
+  row: number;
+  col: number;
+};
+
+type gameTurnsProps = [
+  player: PlayersNameProps,
+  square: squareProps,
+  turn: turnProps,
+];
+
+function derivedActivePlayer(gameTurns: gameTurnsProps) {
   let currentPlayer = "X";
-  if (gameTurns.length > 0 && gameTurns[0].player === "X") {
+  if (gameTurns.length > 0 && gameTurns[0].X === "X") {
     currentPlayer = "O";
   }
   return currentPlayer;
 }
-function derivedGameBoard(gameTurns) {
+function derivedGameBoard(gameTurns: gameTurnsProps) {
   let gameBoard = [...INITIAL_GAME_BOARD.map((array) => [...array])];
 
   for (const turn of gameTurns) {
@@ -57,7 +79,7 @@ function derivedWinner(gameBoard, players) {
 
 function App() {
   const [players, setPlayers] = useState({ PLAYERS });
-  const [gameTurns, setGameTurns] = useState([]);
+  const [gameTurns, setGameTurns] = useState<gameTurnsProps>([]);
 
   const activePlayer = derivedActivePlayer(gameTurns);
   const gameBoard = derivedGameBoard(gameTurns);
