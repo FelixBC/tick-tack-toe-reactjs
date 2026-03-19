@@ -5,20 +5,8 @@ export type Player = {
   onChangeName: (playerSymbol: string, playerName: string) => void;
 };
 
+export type Cell = null | "X" | "O";
 
+export type Row = [Cell, Cell, Cell];
 
-export type Board = {
-  board: [
-    symbol: string,
-    symbol: string,
-    symbol: string,
-
-    symbol: string,
-    symbol: string,
-    symbol: string,
-
-    symbol: string,
-    symbol: string,
-    symbol: string,
-  ];
-};
+export type Board = [Row, Row, Row];
