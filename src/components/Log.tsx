@@ -1,5 +1,7 @@
+import { gameTurnsProps } from "./types";
+
 type logProps = {
-  turns: unknown;
+  turns: gameTurnsProps;
 };
 const Log: React.FC<logProps> = ({ turns }) => {
   return (

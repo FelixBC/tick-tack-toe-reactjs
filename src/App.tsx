@@ -4,7 +4,13 @@ import { useState } from "react";
 import Log from "./components/Log.tsx";
 import { WINNING_COMBINATIONS } from "./winning-combinations.ts";
 import GameOver from "./components/GameOver.tsx";
-import { Board, Cell } from "./components/types.ts";
+import {
+  Board,
+  Cell,
+  gameTurnsProps,
+  playerSymbol,
+  squareProps,
+} from "./components/types.ts";
 
 type PlayersNameProps = {
   X: string;
@@ -22,19 +28,8 @@ const INITIAL_GAME_BOARD: Board = [
   [null, null, null],
 ];
 
-type squareProps = {
-  row: number;
-  col: number;
-};
-
-type gameTurnProps = {
-  square: squareProps;
-  player: Cell;
-};
-type gameTurnsProps = gameTurnProps[];
-
 function derivedActivePlayer(gameTurns: gameTurnsProps) {
-  let currentPlayer = "X";
+  let currentPlayer: playerSymbol = "X";
   if (gameTurns.length > 0 && gameTurns[0].player === "X") {
     currentPlayer = "O";
   }
@@ -52,14 +47,14 @@ function derivedGameBoard(gameTurns: gameTurnsProps) {
 }
 
 function derivedWinner(gameBoard: Board, players: PlayersNameProps) {
-  let winner = null;
+  let winner: string | null = null;
 
   for (const combination of WINNING_COMBINATIONS) {
-    const firstSquareSymbol =
+    const firstSquareSymbol: Cell =
       gameBoard[combination[0].row][combination[0].column];
-    const secondSquareSymbol =
+    const secondSquareSymbol: Cell =
       gameBoard[combination[1].row][combination[1].column];
-    const thirdSquareSymbol =
+    const thirdSquareSymbol: Cell =
       gameBoard[combination[2].row][combination[2].column];
     if (
       firstSquareSymbol &&
@@ -96,7 +91,7 @@ function App() {
     setGameTurns([]);
   }
 
-  function handlePlayerNameChange(symbol: "X" | "O", newName: string) {
+  function handlePlayerNameChange(symbol: playerSymbol, newName: string) {
     setPlayers((prevPlayers) => {
       return {
         ...prevPlayers,

@@ -1,5 +1,5 @@
 type gameOverProps = {
-  winner: string;
+  winner: string | null;
   onRestart: () => void;
 };
 

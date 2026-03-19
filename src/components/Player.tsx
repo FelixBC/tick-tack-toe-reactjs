@@ -1,23 +1,28 @@
 import { useState } from "react";
-import type {Player} from './types'
 type playerProps = {
-  player: Player
-}
+  initialName: string;
+  symbol: "X" | "O";
+  isActive: boolean;
+  onChangeName: (playerSymbol: "X" | "O", playerName: string) => void;
+};
 
-
-const Player: React.FC<playerProps> = ({player}) => {
- 
+const Player: React.FC<playerProps> = ({
+  initialName,
+  symbol,
+  isActive,
+  onChangeName,
+}) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [playerName, setPlayerName] = useState<string>(player.initialName);
+  const [playerName, setPlayerName] = useState<string>(initialName);
 
   function handleEditable() {
     setIsEditing((editing) => !editing);
     if (isEditing) {
-      player.onChangeName(player.symbol, playerName);
+      onChangeName(symbol, playerName);
     }
   }
 
-  function handleChange(event:React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setPlayerName(event.target.value);
   }
 
@@ -30,13 +35,13 @@ const Player: React.FC<playerProps> = ({player}) => {
   }
 
   return (
-    <li className={player.isActive ? "active" : undefined}>
+    <li className={isActive ? "active" : undefined}>
       <span className="player">
         {editablePlayerName}
-        <span className="player-symbol">{player.symbol}</span>
+        <span className="player-symbol">{symbol}</span>
       </span>
       <button onClick={handleEditable}>{isEditing ? "Save" : "Edit"}</button>
     </li>
   );
-}
+};
 export default Player;
